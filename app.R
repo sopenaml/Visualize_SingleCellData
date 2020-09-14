@@ -5,8 +5,9 @@ library(dplyr)
 library(shiny)
 
 
-# read data in
-# it should be copied to  www/shiny/bioinformatician/project_dir
+# reads data in from Seurat3 objects
+# to be shared via our shiny app server
+# the app.R and the seuratObject.RDS  should be copied to  www/shiny/bioinformatician/project_dir
 
 
 scefilt.toplot <- readRDS( "PATH_TO_SEURAT_OBJECT.RDS")
@@ -21,7 +22,7 @@ scefilt.toplot <- readRDS( "PATH_TO_SEURAT_OBJECT.RDS")
 ui <- fluidPage(
   # This is the main title for the app
   
-  titlePanel ( "PROJECT ID"),
+  titlePanel ( "PROJECT_NAME"),
   # this creates a box where scientist can input their gene of interest
   
   textInput(inputId = "Gene",
