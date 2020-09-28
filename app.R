@@ -11,6 +11,7 @@ library(shiny)
 
 
 scefilt.toplot <- readRDS( "PATH_TO_SEURAT_OBJECT.RDS")
+allGenes <- rownames(scefilt.toplot)
 
 
 ################################################################
@@ -22,12 +23,18 @@ scefilt.toplot <- readRDS( "PATH_TO_SEURAT_OBJECT.RDS")
 ui <- fluidPage(
   # This is the main title for the app
   
-  titlePanel ( "PROJECT_NAME"),
-  # this creates a box where scientist can input their gene of interest
-  
-  textInput(inputId = "Gene",
-            label = "Gene Symbol:",
-            value = "Myl3" ),
+ # textInput(inputId = "Gene",
+  #           label = "Gene Symbol:",
+  #           value = "Myl3" ),
+  # 
+  ## this allows for entering multiple genes 
+  selectizeInput(inputId = "genes",
+                 label = "Enter Genes to plot:",
+                 choices = c(as.vector(sort(unique(allGenes)))),
+                 selected = c("Myl3","Myl2", "Myl7"),
+                 multiple = TRUE,
+                 options = NULL ),
+
   # Top 2 panels 
   fluidRow(
     # left panel is a static view of UMAP generated for the analysis
@@ -36,7 +43,7 @@ ui <- fluidPage(
            plotOutput('tsne')
            ),
     ## Panel for features Plot, responds to change in input Gene box
-    column(4,
+    column(6,
            "Features Plot",
            downloadButton("downloadPlot", "Download"),
            plotOutput('plot1')
@@ -45,7 +52,7 @@ ui <- fluidPage(
   # bottom panel
   fluidRow(
     ## Panel for Violin Plot, responds to change in input Gene box
-    column( 4,
+    column( 8,
             "Violin Plot",
             downloadButton("downloadVPlot", "Download"),
             plotOutput('plot2')
