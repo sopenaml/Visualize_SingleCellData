@@ -22,7 +22,7 @@ allGenes <- rownames(scefilt.toplot)
 
 ui <- fluidPage(
   # This is the main title for the app
-  
+titlePanel ( "PROJECT_NAME"),  
  # textInput(inputId = "Gene",
   #           label = "Gene Symbol:",
   #           value = "Myl3" ),
