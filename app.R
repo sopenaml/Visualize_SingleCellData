@@ -10,8 +10,7 @@ library(shiny)
 # the app.R and the seuratObject.RDS  should be copied to  www/shiny/bioinformatician/project_dir
 
 
-#scefilt.toplot <- readRDS( "PATH_TO_SEURAT_OBJECT.RDS")
-scefilt.toplot <- readRDS("integrated.data.filt.clstrs.cc_corrected.rds")
+scefilt.toplot <- readRDS( "PATH_TO_SEURAT_OBJECT.RDS")
 
 allGenes <- rownames(scefilt.toplot)
 
